@@ -1,0 +1,23 @@
+{% extends 'base.html.twig.' %}
+
+{% block title %}Les annonces{% endblock %}
+
+{% block body %}
+<br>
+    <section class="annonces">
+        {% for annonce in annonces %}
+            <annonce>
+                <h2>{{ annonce.titre }}</h2>
+                <div class="metadata">
+                    Publié par {{ annonce.user.pseudo }} (<small> le {{ annonce.createAt | date('d/m/Y')}}
+                        à {{ annonce.createAt | date('H:i') }}</small>)
+                </div>
+                <div class="content">
+                    {{ annonce.content | raw }}
+                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}" class="btn btn-primary">Lire la suite</a>
+                </div>
+            </annonce>
+        {% endfor %}
+    </section>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% form_theme commentaireForm 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}{{ annonce.titre }}{% endblock %}
+
+{% block body %}
+
+    <br>
+    <annonce>
+        <h1>{{ annonce.titre }}</h1>
+        <div class="metadata">
+            Publié par {{ annonce.user.pseudo }} (<small> le {{ annonce.createAt | date('d/m/Y')}}
+                à {{ annonce.createAt | date('H:i') }}</small>)
+        </div>
+        <br>
+        <div class="content">
+            <h3>{{ annonce.content | raw }}</h3>
+        </div>
+    </annonce>
+
+    <br>
+    <section id="commentaires">
+        <h4>{{ annonce.commentaires | length }} Commentaires : </h4>
+        <br>
+        {% for commentaire in annonce.commentaires %}
+        <div class="AffichageCommentaire">
+            <div class="row">
+                <div class="col-3">
+                    {{ commentaire.user.pseudo }} (<small>{{ commentaire.createdAt | date('d/m/Y à H:i') }}</small>)
+                </div>
+                <div class="col">
+                    {{ commentaire.content |raw }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <br>
+        <div class="Commentaire">
+            {{ form_start(commentaireForm) }}
+            {{ form_row(commentaireForm.content, {'label': 'Votre commentaire'}) }}
+
+            <button type="submit" class="btn btn-success">Envoyer votre commentaire</button>
+        {{ form_end(commentaireForm) }}
+        </div>
+    </section>
+
+{% endblock %}

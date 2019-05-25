@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <br>
+    <h1>Inscription</h1>
+    <br>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.nom, {'label': 'Nom', 'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(form.prenom, {'label': 'Prenom', 'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(form.pseudo, {'label': 'Pseudo', 'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(form.email, {'label': 'Email', 'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(form.mdp, {'label': 'Mot de passe', 'attr' : {'class' : 'form-control'}}) }}
+    {{ form_row(form.confirm_mdp, {'label': 'Confirmation mot de passe', 'attr' : {'class' : 'form-control'}}) }}
+    {{ form_widget(form) }}
+
+    <div class="mt-3"></div>
+    <button type="submit" class="btn btn-success">Confirmation</button>
+    {{ form_end(form) }}
+{% endblock %}
